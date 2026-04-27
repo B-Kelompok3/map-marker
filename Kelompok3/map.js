@@ -8,8 +8,8 @@ const map = L.map('map', {
     markerZoomAnimation: true
 }).setView(BANDA_ACEH_COORDS, 14);
 
-// Add custom zoom control to bottom right (modern style)
-L.control.zoom({ position: 'bottomright' }).addTo(map);
+// Add custom zoom control to bottom left (to avoid sidebar on the right)
+L.control.zoom({ position: 'bottomleft' }).addTo(map);
 
 // Use a high-quality dark tile layer for the premium aesthetic
 L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
