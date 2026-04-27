@@ -1,22 +1,56 @@
 // Center coordinates for Banda Aceh
 const BANDA_ACEH_COORDS = [5.5483, 95.3238];
 
-// Initialize map with a slightly higher zoom for city focus
-const map = L.map('map', {
-    zoomControl: false,
-    fadeAnimation: true,
-    markerZoomAnimation: true
-}).setView(BANDA_ACEH_COORDS, 14);
-
-// Add custom zoom control to bottom left (to avoid sidebar on the right)
-L.control.zoom({ position: 'bottomleft' }).addTo(map);
-
-// Use a high-quality dark tile layer for the premium aesthetic
-L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+// Defined Tile Layers
+const darkLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; CARTO',
     subdomains: 'abcd',
     maxZoom: 20
-}).addTo(map);
+});
+
+const lightLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; CARTO',
+    subdomains: 'abcd',
+    maxZoom: 20
+});
+
+const satelliteLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    attribution: 'Tiles &copy; Esri'
+});
+
+const layers = {
+    'dark': darkLayer,
+    'light': lightLayer,
+    'satellite': satelliteLayer
+};
+
+// Initialize map with Dark Mode by default
+const map = L.map('map', {
+    zoomControl: false,
+    fadeAnimation: true,
+    markerZoomAnimation: true,
+    layers: [darkLayer]
+}).setView(BANDA_ACEH_COORDS, 14);
+
+// Add custom zoom control to bottom left
+L.control.zoom({ position: 'bottomleft' }).addTo(map);
+
+// Modern Layer Switcher Logic
+function switchLayer(layerKey) {
+    // Remove all layers first
+    Object.values(layers).forEach(layer => map.removeLayer(layer));
+    // Add the selected one
+    map.addLayer(layers[layerKey]);
+    
+    // Update UI active state
+    document.querySelectorAll('.map-type-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.type === layerKey);
+    });
+}
+
+document.querySelectorAll('.map-type-btn').forEach(btn => {
+    btn.addEventListener('click', () => switchLayer(btn.dataset.type));
+});
 
 function addToList(name, description, lat, lng, marker) {
     const list = document.getElementById('places-list');

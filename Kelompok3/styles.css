@@ -217,6 +217,55 @@ input:focus, textarea:focus {
     line-height: 1.5;
 }
 
+/* Floating Action Buttons */
+.map-controls {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem; /* Pindah ke kanan */
+    z-index: 1000;
+    display: flex;
+    gap: 0.75rem;
+    pointer-events: auto;
+}
+
+.map-type-switcher {
+    background: var(--card-bg);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    display: flex;
+    padding: 4px;
+    gap: 4px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.map-type-btn {
+    background: transparent;
+    border: none;
+    border-radius: 12px;
+    padding: 0 1rem; /* Padding untuk teks */
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text-muted);
+    font-size: 0.85rem; /* Font lebih kecil untuk teks */
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.map-type-btn:hover {
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.map-type-btn.active {
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+}
+
 /* Leaflet Customizations */
 .leaflet-control-zoom {
     border: none !important;
