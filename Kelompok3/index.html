@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aceh Explorer - Map of Places</title>
+    <meta name="description" content="Peta interaktif tempat-tempat menarik di Banda Aceh.">
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Aceh Explorer</h1>
+        <p class="subtitle">Temukan dan bagikan tempat menarik di jantung Serambi Mekkah, Banda Aceh.</p>
+    </header>
+
+    <main>
+        <div class="sidebar">
+            <section class="card">
+                <div class="card-title">
+                    <span>📍</span> Tambah Tempat Baru
+                </div>
+                <div class="input-group">
+                    <label for="place-name">Nama Tempat</label>
+                    <input type="text" id="place-name" placeholder="Misal: Kopi Solong">
+                </div>
+                <div class="input-group">
+                    <label for="place-desc">Deskripsi</label>
+                    <textarea id="place-desc" placeholder="Ceritakan sedikit tentang tempat ini..."></textarea>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="input-group">
+                        <label for="place-lat">Latitude</label>
+                        <input type="number" id="place-lat" step="any" placeholder="5.5xxx">
+                    </div>
+                    <div class="input-group">
+                        <label for="place-lng">Longitude</label>
+                        <input type="number" id="place-lng" step="any" placeholder="95.3xxx">
+                    </div>
+                </div>
+                <button id="add-place-btn" class="btn-primary">
+                    Tambahkan ke Peta
+                </button>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 1.5rem; line-height: 1.5;">
+                    💡 <strong>Tips:</strong> Klik area mana saja di peta untuk mengisi koordinat secara otomatis!
+                </p>
+            </section>
+        </div>
+
+        <section id="map"></section>
+    </main>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    
+    <!-- Custom JS -->
+    <script src="map.js"></script>
+</body>
+</html>
