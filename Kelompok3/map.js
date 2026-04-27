@@ -91,22 +91,55 @@ map.on('locationerror', (e) => {
     alert("Gagal mendapatkan lokasi: " + e.message);
 });
 
-function addToList(name, description, lat, lng, marker) {
+// Pagination & Search Logic
+let allPlacesData = [];
+let currentPage = 1;
+const itemsPerPage = 4;
+
+function renderPlacesList(page) {
     const list = document.getElementById('places-list');
-    const item = document.createElement('div');
-    item.className = 'place-item';
-    item.innerHTML = `
-        <h4>${name}</h4>
-        <p>${description}</p>
-    `;
+    list.innerHTML = ''; // Clear current list
     
-    item.onclick = () => {
-        map.flyTo([lat, lng], 16, { duration: 1.5 });
-        marker.openPopup();
-    };
+    const startIndex = (page - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const paginatedItems = allPlacesData.slice(startIndex, endIndex);
     
-    list.prepend(item);
+    paginatedItems.forEach(p => {
+        const item = document.createElement('div');
+        item.className = 'place-item';
+        item.innerHTML = `
+            <h4>${p.name}</h4>
+            <p>${p.description}</p>
+        `;
+        
+        item.onclick = () => {
+            map.flyTo([p.lat, p.lng], 16, { duration: 1.5 });
+            p.marker.openPopup();
+        };
+        
+        list.appendChild(item);
+    });
+    
+    // Update Pagination UI
+    document.getElementById('page-info').innerText = `Halaman ${page}`;
+    document.getElementById('prev-page').disabled = (page === 1);
+    document.getElementById('next-page').disabled = (endIndex >= allPlacesData.length);
 }
+
+// Navigation Events
+document.getElementById('prev-page').onclick = () => {
+    if (currentPage > 1) {
+        currentPage--;
+        renderPlacesList(currentPage);
+    }
+};
+
+document.getElementById('next-page').onclick = () => {
+    if ((currentPage * itemsPerPage) < allPlacesData.length) {
+        currentPage++;
+        renderPlacesList(currentPage);
+    }
+};
 
 function createPlaceMarker(name, description, lat, lng, addedAt) {
     const marker = L.marker([lat, lng]).addTo(map);
@@ -131,13 +164,13 @@ function createPlaceMarker(name, description, lat, lng, addedAt) {
         offset: [0, -10]
     });
     
-    // Smoothly focus on marker when clicked
     marker.on('click', () => {
         map.flyTo([lat, lng], 16, { duration: 1.2 });
     });
     
-    // Add to the list on the left
-    addToList(name, description, lat, lng, marker);
+    // Store data for pagination
+    allPlacesData.unshift({ name, description, lat, lng, marker });
+    renderPlacesList(1); // Refresh list
     
     return marker;
 }
@@ -146,8 +179,9 @@ function createPlaceMarker(name, description, lat, lng, addedAt) {
 fetch('location.json')
     .then(res => res.json())
     .then(places => {
-        // Reverse to show the list in correct order if prepending
-        places.reverse().forEach(p => {
+        // Clear array first to avoid duplication
+        allPlacesData = [];
+        places.forEach(p => {
             createPlaceMarker(p.name, p.description, p.lat, p.lng, p.addedAt);
         });
     })

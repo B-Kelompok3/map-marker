@@ -33,9 +33,16 @@
     <div class="ui-overlay">
         <!-- Top Left: Places List -->
         <div class="places-container">
-            <div class="card-title" style="margin-top: 0;">📋 Daftar Tempat</div>
+            <div class="card-title" style="margin-top: 0;">Daftar Tempat</div>
             <div id="places-list" class="places-list-wrapper">
                 <!-- Items will be injected here via JS -->
+            </div>
+            
+            <!-- Pagination Controls -->
+            <div id="pagination" class="pagination-container">
+                <button id="prev-page" class="pager-btn" disabled>&larr;</button>
+                <span id="page-info">Halaman 1</span>
+                <button id="next-page" class="pager-btn">&rarr;</button>
             </div>
         </div>
 
