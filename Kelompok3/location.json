@@ -4,6 +4,7 @@
     "description": "Ikonik Masjid di pusat kota Banda Aceh.",
     "lat": 5.5536,
     "lng": 95.3171,
+    "category": "Masjid",
     "addedAt": "2026-04-27 10:00 WIB"
   },
   {
@@ -11,6 +12,7 @@
     "description": "Monumen peringatan tsunami 2004.",
     "lat": 5.5478,
     "lng": 95.3151,
+    "category": "Museum",
     "addedAt": "2026-04-27 11:30 WIB"
   },
   {
@@ -18,6 +20,7 @@
     "description": "Kapal pembangkit listrik yang terdampar saat tsunami.",
     "lat": 5.5459,
     "lng": 95.3056,
+    "category": "Museum",
     "addedAt": "2026-04-27 14:15 WIB"
   },
   {
@@ -25,6 +28,7 @@
     "description": "Rumah Sakit Umum Daerah dr. Zainoel Abidin.",
     "lat": 5.564625285359801, 
     "lng": 95.33738374872709,
+    "category": "Rumah Sakit",
     "addedAt": "2026-04-27 16:15 WIB"
   },
   {  
@@ -32,6 +36,7 @@
     "description": "Kampus utama di Banda Aceh.",
     "lat": 5.570586010562494, 
     "lng": 95.3697121177349,
+    "category": "Kampus",
     "addedAt": "2026-04-27 16:00 WIB"
   },
   {
@@ -39,12 +44,14 @@
     "description": "Universitas Islam Negeri di Banda Aceh.",
     "lat": 5.578687001248809, 
     "lng": 95.36685577966534,
+    "category": "Kampus",
     "addedAt": "2026-04-27 16:05 WIB"
   },{
     "name": "Universitas Bina Bangsa Getsempena (UBBG)",
     "description": "Kampus swasta di Banda Aceh.",
     "lat": 5.58034762237124, 
     "lng": 95.35794817815426,
+    "category": "Kampus",
     "addedAt": "2026-04-27 16:10 WIB"
   },
   {
@@ -52,6 +59,7 @@
   "description": "Rumah sakit militer di Banda Aceh.",
   "lat": 5.5548921858677005,
   "lng": 95.32411934084257,
+  "category": "Rumah Sakit",
   "addedAt": "2026-04-27 17:10 WIB"
   },
   {
@@ -59,6 +67,7 @@
   "description": "Puskesmas di depan kawasan USK.",
   "lat": 5.572455970368555, 
   "lng": 95.3681429425803,
+  "category": "Puskesmas",
   "addedAt": "2026-04-27 17:15 WIB"
   }
 ]

@@ -141,7 +141,7 @@ document.getElementById('next-page').onclick = () => {
     }
 };
 
-function createPlaceMarker(name, description, lat, lng, addedAt) {
+function createPlaceMarker(name, description, lat, lng, addedAt, category) {
     const marker = L.marker([lat, lng]).addTo(map);
     
     const popupContent = `
@@ -155,6 +155,7 @@ function createPlaceMarker(name, description, lat, lng, addedAt) {
             <p>${description}</p>
             <div style="font-size: 0.7rem; color: #475569; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 8px; display: flex; gap: 8px;">
                 <span>📍 ${lat.toFixed(4)}, ${lng.toFixed(4)}</span>
+                <span>🏷️ ${category || 'Tidak ada kategori'}</span>
             </div>
         </div>
     `;
@@ -182,7 +183,7 @@ fetch('location.json')
         // Clear array first to avoid duplication
         allPlacesData = [];
         places.forEach(p => {
-            createPlaceMarker(p.name, p.description, p.lat, p.lng, p.addedAt);
+            createPlaceMarker(p.name, p.description, p.lat, p.lng, p.addedAt, p.category);
         });
     })
     .catch(err => console.error('Gagal memuat data tempat:', err));
