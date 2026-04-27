@@ -52,6 +52,45 @@ document.querySelectorAll('.map-type-btn').forEach(btn => {
     btn.addEventListener('click', () => switchLayer(btn.dataset.type));
 });
 
+// GPS Location Logic (Automatic)
+let userLocationMarker = null;
+let userAccuracyCircle = null;
+
+// Start locating as soon as the map is ready
+map.locate({ 
+    setView: false, // Don't jump immediately to avoid jarring experience
+    watch: true, 
+    enableHighAccuracy: true 
+});
+
+map.on('locationfound', (e) => {
+    const radius = e.accuracy / 2;
+
+    if (userLocationMarker) {
+        map.removeLayer(userLocationMarker);
+        map.removeLayer(userAccuracyCircle);
+    }
+
+    const userIcon = L.divIcon({
+        className: 'user-location-marker',
+        iconSize: [16, 16]
+    });
+
+    userLocationMarker = L.marker(e.latlng, { icon: userIcon }).addTo(map);
+    userLocationMarker.bindPopup("Anda di sini").openPopup();
+
+    userAccuracyCircle = L.circle(e.latlng, radius, {
+        color: '#ef4444',
+        fillColor: '#ef4444',
+        fillOpacity: 0.1,
+        weight: 1
+    }).addTo(map);
+});
+
+map.on('locationerror', (e) => {
+    alert("Gagal mendapatkan lokasi: " + e.message);
+});
+
 function addToList(name, description, lat, lng, marker) {
     const list = document.getElementById('places-list');
     const item = document.createElement('div');
