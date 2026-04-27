@@ -3,40 +3,47 @@ const BANDA_ACEH_COORDS = [5.5483, 95.3238];
 
 // Initialize map with a slightly higher zoom for city focus
 const map = L.map('map', {
-    zoomControl: false // We'll add it to the top-right later
+    zoomControl: false,
+    fadeAnimation: true,
+    markerZoomAnimation: true
 }).setView(BANDA_ACEH_COORDS, 14);
 
-// Add custom zoom control
-L.control.zoom({ position: 'topright' }).addTo(map);
+// Add custom zoom control to bottom right (modern style)
+L.control.zoom({ position: 'bottomright' }).addTo(map);
 
 // Use a high-quality dark tile layer for the premium aesthetic
 L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+    attribution: '&copy; CARTO',
     subdomains: 'abcd',
     maxZoom: 20
 }).addTo(map);
 
-// Function to create a custom marker icon (optional, but let's keep it simple with default first)
-// Or just style the popup nicely.
-
-function createPlaceMarker(name, description, lat, lng, addedAt, isSaved = false) {
+function createPlaceMarker(name, description, lat, lng, addedAt) {
     const marker = L.marker([lat, lng]).addTo(map);
     
     const popupContent = `
         <div class="popup-content">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
                 <h3 style="margin: 0;">${name}</h3>
-                <span style="font-size: 0.7rem; color: #94a3b8; background: rgba(255,255,255,0.05); padding: 2px 6px; border-radius: 4px;">${addedAt || 'Baru'}</span>
+                <span style="font-size: 0.65rem; color: #38bdf8; background: rgba(56, 189, 248, 0.1); padding: 2px 8px; border-radius: 20px; white-space: nowrap;">
+                    ${addedAt || 'Baru'}
+                </span>
             </div>
             <p>${description}</p>
-            <div style="margin-top: 8px; font-size: 0.75rem; color: #64748b; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 4px;">
-                ${lat.toFixed(5)}, ${lng.toFixed(5)}
+            <div style="font-size: 0.7rem; color: #475569; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 8px; display: flex; gap: 8px;">
+                <span>📍 ${lat.toFixed(4)}, ${lng.toFixed(4)}</span>
             </div>
         </div>
     `;
     
     marker.bindPopup(popupContent, {
-        className: 'custom-popup'
+        className: 'custom-popup',
+        offset: [0, -10]
+    });
+    
+    // Smoothly focus on marker when clicked
+    marker.on('click', () => {
+        map.flyTo([lat, lng], 16, { duration: 1.2 });
     });
     
     return marker;
@@ -47,7 +54,7 @@ fetch('location.json')
     .then(res => res.json())
     .then(places => {
         places.forEach(p => {
-            createPlaceMarker(p.name, p.description, p.lat, p.lng, p.addedAt, true);
+            createPlaceMarker(p.name, p.description, p.lat, p.lng, p.addedAt);
         });
     })
     .catch(err => console.error('Gagal memuat data tempat:', err));
@@ -55,7 +62,6 @@ fetch('location.json')
 // Helper function to get current time in WIB format
 function getWIBTime() {
     const now = new Date();
-    // Using Intl to ensure format is consistent
     const options = { 
         year: 'numeric', month: '2-digit', day: '2-digit',
         hour: '2-digit', minute: '2-digit',
@@ -80,15 +86,18 @@ map.on('click', (e) => {
     document.getElementById('place-lat').value = lat.toFixed(6);
     document.getElementById('place-lng').value = lng.toFixed(6);
     
-    // Add a temporary "target" marker to show where they clicked
+    // Smoothly pan to the clicked location
+    map.panTo([lat, lng]);
+
+    // Visual feedback for selected point
     if (window.tempMarker) map.removeLayer(window.tempMarker);
     window.tempMarker = L.circleMarker([lat, lng], {
-        radius: 8,
+        radius: 10,
         fillColor: "#0ea5e9",
         color: "#fff",
-        weight: 2,
+        weight: 3,
         opacity: 1,
-        fillOpacity: 0.8
+        fillOpacity: 0.6
     }).addTo(map);
 });
 
