@@ -19,5 +19,46 @@
     "lat": 5.5459,
     "lng": 95.3056,
     "addedAt": "2026-04-27 14:15 WIB"
+  },
+  {
+    "name": "ZA (Zainal Abidin / RSUDZA)",
+    "description": "Rumah Sakit Umum Daerah dr. Zainoel Abidin.",
+    "lat": 5.564625285359801, 
+    "lng": 95.33738374872709,
+    "addedAt": "2026-04-27 16:15 WIB"
+  },
+  {  
+    "name": "Universitas Syiah Kuala (USK)",
+    "description": "Kampus utama di Banda Aceh.",
+    "lat": 5.570586010562494, 
+    "lng": 95.3697121177349,
+    "addedAt": "2026-04-27 16:00 WIB"
+  },
+  {
+    "name": "UIN Ar-Raniry",
+    "description": "Universitas Islam Negeri di Banda Aceh.",
+    "lat": 5.578687001248809, 
+    "lng": 95.36685577966534,
+    "addedAt": "2026-04-27 16:05 WIB"
+  },{
+    "name": "Universitas Bina Bangsa Getsempena (UBBG)",
+    "description": "Kampus swasta di Banda Aceh.",
+    "lat": 5.58034762237124, 
+    "lng": 95.35794817815426,
+    "addedAt": "2026-04-27 16:10 WIB"
+  },
+  {
+  "name": "Rumah Sakit Tk.II Iskandar Muda",
+  "description": "Rumah sakit militer di Banda Aceh.",
+  "lat": 5.5548921858677005,
+  "lng": 95.32411934084257,
+  "addedAt": "2026-04-27 17:10 WIB"
+  },
+  {
+  "name": "Klinik Pratama USK",
+  "description": "Puskesmas di depan kawasan USK.",
+  "lat": 5.572455970368555, 
+  "lng": 95.3681429425803,
+  "addedAt": "2026-04-27 17:15 WIB"
   }
 ]
