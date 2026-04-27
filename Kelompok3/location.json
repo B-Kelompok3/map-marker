@@ -3,18 +3,21 @@
     "name": "Masjid Raya Baiturrahman",
     "description": "Ikonik Masjid di pusat kota Banda Aceh.",
     "lat": 5.5536,
-    "lng": 95.3171
+    "lng": 95.3171,
+    "addedAt": "2026-04-27 10:00 WIB"
   },
   {
     "name": "Museum Tsunami Aceh",
     "description": "Monumen peringatan tsunami 2004.",
     "lat": 5.5478,
-    "lng": 95.3151
+    "lng": 95.3151,
+    "addedAt": "2026-04-27 11:30 WIB"
   },
   {
     "name": "PLTD Apung 1",
     "description": "Kapal pembangkit listrik yang terdampar saat tsunami.",
     "lat": 5.5459,
-    "lng": 95.3056
+    "lng": 95.3056,
+    "addedAt": "2026-04-27 14:15 WIB"
   }
 ]
