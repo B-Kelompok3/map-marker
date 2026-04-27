@@ -18,6 +18,23 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
     maxZoom: 20
 }).addTo(map);
 
+function addToList(name, description, lat, lng, marker) {
+    const list = document.getElementById('places-list');
+    const item = document.createElement('div');
+    item.className = 'place-item';
+    item.innerHTML = `
+        <h4>${name}</h4>
+        <p>${description}</p>
+    `;
+    
+    item.onclick = () => {
+        map.flyTo([lat, lng], 16, { duration: 1.5 });
+        marker.openPopup();
+    };
+    
+    list.prepend(item);
+}
+
 function createPlaceMarker(name, description, lat, lng, addedAt) {
     const marker = L.marker([lat, lng]).addTo(map);
     
@@ -46,6 +63,9 @@ function createPlaceMarker(name, description, lat, lng, addedAt) {
         map.flyTo([lat, lng], 16, { duration: 1.2 });
     });
     
+    // Add to the list on the left
+    addToList(name, description, lat, lng, marker);
+    
     return marker;
 }
 
@@ -53,7 +73,8 @@ function createPlaceMarker(name, description, lat, lng, addedAt) {
 fetch('location.json')
     .then(res => res.json())
     .then(places => {
-        places.forEach(p => {
+        // Reverse to show the list in correct order if prepending
+        places.reverse().forEach(p => {
             createPlaceMarker(p.name, p.description, p.lat, p.lng, p.addedAt);
         });
     })

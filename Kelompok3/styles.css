@@ -39,12 +39,57 @@ body, html {
     left: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none; /* Let clicks pass through to map */
+    pointer-events: none;
     z-index: 10;
     padding: 2rem;
     display: flex;
+    justify-content: space-between; /* Space between left list and right sidebar */
+    align-items: flex-start;
+}
+
+.places-container {
+    pointer-events: auto;
+    width: 320px;
+    max-height: calc(100vh - 4rem);
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+    border-radius: 28px;
+    padding: 1.5rem;
+    display: flex;
     flex-direction: column;
-    align-items: flex-end; /* Move items to the right */
+    gap: 1rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+}
+
+.place-item {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.place-item:hover {
+    background: rgba(14, 165, 233, 0.1);
+    border-color: var(--primary);
+    transform: translateX(5px);
+}
+
+.place-item h4 {
+    font-size: 0.95rem;
+    color: var(--text);
+    margin-bottom: 0.2rem;
+}
+
+.place-item p {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .sidebar {
