@@ -119,12 +119,12 @@
     "addedAt":"2026-04-27 19:20 WIB"
   },
   {
-  "name": "Masjid Oman Al-Makmur",
-  "description": "Masjid megah hasil kerja sama dengan Oman.",
-  "lat": 5.567562609935646, 
-  "lng": 95.33875704458498,
-  "category": "Hotel",
-  "addedAt": "2026-04-27 19:25 WIB"
+    "name": "Masjid Oman Al-Makmur",
+    "description": "Masjid megah hasil kerja sama dengan Oman.",
+    "lat": 5.567562609935646, 
+    "lng": 95.33875704458498,
+    "category": "Hotel",
+    "addedAt": "2026-04-27 19:25 WIB"
   },
   {
     "name":"JF Kupie",
@@ -143,19 +143,19 @@
     "addedAt":"2026-04-27 19:35 WIB"
   },
   {
-  "name": "Hotel Mekkah",
-  "description": "Penginapan yang sering digunakan wisatawan.",
-  "lat": 5.56672069992858, 
-  "lng": 95.33785957195305,
-  "category": "Hotel",
-  "addedAt": "2026-04-27 20:10 WIB"
+    "name": "Hotel Mekkah",
+    "description": "Penginapan yang sering digunakan wisatawan.",
+    "lat": 5.56672069992858, 
+    "lng": 95.33785957195305,
+    "category": "Hotel",
+    "addedAt": "2026-04-27 20:10 WIB"
   },
   {
-  "name": "Hotel Madinah",
-  "description": "Hotel dengan lokasi strategis di Banda Aceh.",
-  "lat": 5.566275821244651, 
-  "lng": 95.33728593922216,
-  "category": "Hotel",
-  "addedAt": "2026-04-27 20:15 WIB"
+    "name": "Hotel Madinah",
+    "description": "Hotel dengan lokasi strategis di Banda Aceh.",
+    "lat": 5.566275821244651, 
+    "lng": 95.33728593922216,
+    "category": "Hotel",
+    "addedAt": "2026-04-27 20:15 WIB"
   }
 ]
