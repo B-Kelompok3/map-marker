@@ -157,5 +157,13 @@
     "lng": 95.33728593922216,
     "category": "Hotel",
     "addedAt": "2026-04-27 20:15 WIB"
+  },
+  {
+    "name": "Mie Gacoan Batoh",
+    "description": "Mie Gacoan yang ada di Banda Aceh dengan lokasi cabang di batoh.",
+    "lat": 5.527942, 
+    "lng": 95.330654,
+    "category": "Restaurant",
+    "addedAt": "2026-04-27 20:15 WIB"
   }
 ]
