@@ -141,9 +141,66 @@ document.getElementById('next-page').onclick = () => {
     }
 };
 
-function createPlaceMarker(name, description, lat, lng, addedAt) {
-    const marker = L.marker([lat, lng]).addTo(map);
-    
+const markerIcons = {
+    blue: new L.Icon({
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-blue.png',
+        shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41]
+    }),
+    red: new L.Icon({
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
+        shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41]
+    }),
+    green: new L.Icon({
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png',
+        shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41]
+    }),
+    orange: new L.Icon({
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-orange.png',
+        shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41]
+    }), violet: new L.Icon({
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-violet.png',
+        shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41]
+    }),
+    yellow: new L.Icon({
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-yellow.png',
+        shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41]
+    }),
+    grey: new L.Icon({
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-grey.png',
+        shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41]
+    })
+};
+
+
+function createPlaceMarker(name, description, lat, lng, addedAt, category) {
+    const marker = L.marker([lat, lng], {icon: getMarkerIcon(category)}).addTo(map);
+    function getMarkerIcon(category) {
+    const cat = (category || '').toLowerCase();
+
+    if (cat.includes('kampus')) return markerIcons.blue;
+    if (cat.includes('rumah') || cat.includes('puskesmas')) return markerIcons.red;
+    if (cat.includes('masjid') || cat.includes('hotel')) return markerIcons.violet;
+    if (cat.includes('taman')) return markerIcons.green;
+    if (cat.includes('coffee shop') || cat.includes('restaurant')) return markerIcons.orange;
+    if (cat.includes('museum')) return markerIcons.yellow;
+    if (cat.includes('lainnya') || cat.includes('tempat umum')) return markerIcons.grey;
+    return markerIcons.blue; 
+    }
+
     const popupContent = `
         <div class="popup-content">
             <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
@@ -155,6 +212,7 @@ function createPlaceMarker(name, description, lat, lng, addedAt) {
             <p>${description}</p>
             <div style="font-size: 0.7rem; color: #475569; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 8px; display: flex; gap: 8px;">
                 <span>📍 ${lat.toFixed(4)}, ${lng.toFixed(4)}</span>
+                <span>🏷️ ${category || 'Tidak ada kategori'}</span>
             </div>
         </div>
     `;
@@ -182,7 +240,7 @@ fetch('location.json')
         // Clear array first to avoid duplication
         allPlacesData = [];
         places.forEach(p => {
-            createPlaceMarker(p.name, p.description, p.lat, p.lng, p.addedAt);
+            createPlaceMarker(p.name, p.description, p.lat, p.lng, p.addedAt, p.category);
         });
     })
     .catch(err => console.error('Gagal memuat data tempat:', err));
