@@ -192,8 +192,8 @@ function createPlaceMarker(name, description, lat, lng, addedAt, category) {
     const cat = (category || '').toLowerCase();
 
     if (cat.includes('kampus')) return markerIcons.blue;
-    if (cat.includes('rumah') || cat.includes('puskesmas')) return markerIcons.red;
-    if (cat.includes('masjid') || cat.includes('hotel')) return markerIcons.violet;
+    if (cat.includes('rumah') || cat.includes('hotel') || cat.includes('puskesmas')) return markerIcons.red;
+    if (cat.includes('masjid')) return markerIcons.violet;
     if (cat.includes('taman')) return markerIcons.green;
     if (cat.includes('coffee shop') || cat.includes('restaurant')) return markerIcons.orange;
     if (cat.includes('museum')) return markerIcons.yellow;
