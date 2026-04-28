@@ -75,7 +75,7 @@
     "description": "Puskesmas di depan kawasan USK.",
     "lat": 5.572455970368555, 
     "lng": 95.3681429425803,
-    "category": "Puskesmas",
+    "category":"Puskesmas",
     "addedAt": "2026-04-27 17:15 WIB"
   },
   {
@@ -123,7 +123,7 @@
     "description": "Masjid megah hasil kerja sama dengan Oman.",
     "lat": 5.567562609935646, 
     "lng": 95.33875704458498,
-    "category": "Hotel",
+    "category": "Masjid",
     "addedAt": "2026-04-27 19:25 WIB"
   },
   {
