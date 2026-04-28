@@ -6,7 +6,14 @@
     "lng": 95.3171,
     "category": "Masjid",
     "addedAt": "2026-04-27 10:00 WIB"
-  },
+  },{
+  "name": "Masjid Baiturrahim Ulee Lheue",
+  "description": "Masjid bersejarah yang selamat dari tsunami 2004 di kawasan Ulee Lheue.",
+  "lat": 5.5563,
+  "lng": 95.2925,
+  "category": "Masjid",
+  "addedAt": "2026-04-28 23:40 WIB"
+},
   {
     "name": "Museum Tsunami Aceh",
     "description": "Monumen peringatan tsunami 2004.",
@@ -62,6 +69,14 @@
     "category": "Kampus",
     "addedAt": "2026-04-27 16:10 WIB"
   },
+  {
+  "name": "Pantai Lampuuk",
+  "description": "Pantai terkenal dengan pasir putih dan ombak yang cocok untuk wisata.",
+  "lat": 5.5147,
+  "lng": 95.2361,
+  "category": "Wisata",
+  "addedAt": "2026-04-28 23:42 WIB"
+},
   {
     "name": "Rumah Sakit Tk.II Iskandar Muda",
     "description": "Rumah sakit militer di Banda Aceh.",
@@ -165,5 +180,13 @@
     "lng": 95.330654,
     "category": "Restaurant",
     "addedAt": "2026-04-27 20:15 WIB"
-  }
+  },
+  {
+  "name": "Kerkhof Peutjoet",
+  "description": "Kompleks pemakaman tentara Belanda peninggalan kolonial di Banda Aceh.",
+  "lat": 5.5486,
+  "lng": 95.3205,
+  "category": "Sejarah",
+  "addedAt": "2026-04-28 23:45 WIB"
+}
 ]
